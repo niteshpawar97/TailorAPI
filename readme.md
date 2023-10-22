@@ -30,7 +30,8 @@ To add a new customer, send a POST request to `/api/customer/create` with the fo
 ```json
  {"name": "rajsh pawar","phone": "9988007766", "whatsapp": "9988007766"}
 ```
-headers: 'Authorization': '6jQ2FNO2PzV2Aj0WDWEq1WATMVpPwHKe'
+
+- **Headers:** `Authorization: 'client-accesstoken'`
 - **Endpoint:** `/api/customer/create`
 - **Method:** POST
 - **Request Body:**
@@ -47,7 +48,7 @@ To update a customer's information, send a PUT request to `/api/customer/{custom
 ```json
  {"name": "rajsh pawar","phone": "9988007766", "whatsapp": "9988007766"}
 ```
-
+- **Headers:** `Authorization: 'client-accesstoken'`
 - **Endpoint:** `/api/customer/{customerId}`
 - **Method:** PUT
 - **URL Parameter:**
@@ -65,6 +66,7 @@ To update a customer's information, send a PUT request to `/api/customer/{custom
 
 To retrieve a list of all customers, send a GET request to `/api/customer/all`.
 
+- **Headers:** `Authorization: 'client-accesstoken'`
 - **Endpoint:** `/api/customer/all`
 - **Method:** GET
 - **Response:** Customers list in JSON format.
@@ -77,6 +79,7 @@ To retrieve a list of all customers, send a GET request to `/api/customer/all`.
 
 To delete a customer, send a DELETE request to `/api/customer/{customerId}`.
 
+- **Headers:** `Authorization: 'client-accesstoken'`
 - **Endpoint:** `/api/customer/{customerId}`
 - **Method:** DELETE
 - **URL Parameter:**
