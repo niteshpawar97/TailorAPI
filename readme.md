@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # TailorApp API Documentation
 
 This documentation provides information on how to use the endpoints of the TailorApp API.
@@ -14,6 +13,7 @@ Before using any of the endpoints, you need to authenticate. You can do this by 
   "password": "1234"
 }
 ```
+````
 
 - **Endpoint:** `/api/login`
 - **Method:** POST
@@ -28,7 +28,7 @@ Before using any of the endpoints, you need to authenticate. You can do this by 
 To add a new customer, send a POST request to `/api/customer/create` with the following JSON data:
 
 ```json
- {"name": "rajsh pawar","phone": "9988007766", "whatsapp": "9988007766"}
+{ "name": "rajsh pawar", "phone": "9988007766", "whatsapp": "9988007766" }
 ```
 
 - **Headers:** `Authorization: 'client-accesstoken'`
@@ -46,8 +46,9 @@ To add a new customer, send a POST request to `/api/customer/create` with the fo
 To update a customer's information, send a PUT request to `/api/customer/{customerId}` with the following JSON data:
 
 ```json
- {"name": "rajsh pawar","phone": "9988007766", "whatsapp": "9988007766"}
+{ "name": "rajsh pawar", "phone": "9988007766", "whatsapp": "9988007766" }
 ```
+
 - **Headers:** `Authorization: 'client-accesstoken'`
 - **Endpoint:** `/api/customer/{customerId}`
 - **Method:** PUT
@@ -72,7 +73,28 @@ To retrieve a list of all customers, send a GET request to `/api/customer/all`.
 - **Response:** Customers list in JSON format.
 
 ```json
-{"error":false,"message":"Customers List","customers":[{"id":1,"store_id":"niket1234","name":"John Doe","phone":"555-123-4567","whatsapp":"555-987-6543","createtime":"2023-10-21T13:27:51.000Z"},{"id":2,"store_id":"niket1234","name":"Jane Smith","phone":"555-555-5555","whatsapp":"555-111-2222","createtime":"2023-10-21T13:27:51.000Z"},{"id":3,"store_id":"niket1234","name":"Bob Johnson","phone":"555-789-1234","whatsapp":"555-456-7890","createtime":"2023-10-21T13:27:51.000Z"},{"id":6,"store_id":"niket1234","name":"LAXMAN","phone":"666-123-4567","whatsapp":"667-987-6543","createtime":"2023-10-22T09:28:14.000Z"},{"id":7,"store_id":"test65734","name":"rajsh p","phone":"9988007766","whatsapp":"9988007766","createtime":"2023-10-22T13:35:07.000Z"}]}
+{
+  "error": false,
+  "message": "Customers List",
+  "customers": [
+    {
+      "id": 1,
+      "store_id": "niket1234",
+      "name": "John Doe",
+      "phone": "555-123-4567",
+      "whatsapp": "555-987-6543",
+      "createtime": "2023-10-21T13:27:51.000Z"
+    },
+    {
+      "id": 2,
+      "store_id": "niket1234",
+      "name": "Jane Smith",
+      "phone": "555-555-5555",
+      "whatsapp": "555-111-2222",
+      "createtime": "2023-10-21T13:27:51.000Z"
+    },
+  ]
+}
 ```
 
 ## Delete a Customer
@@ -86,4 +108,7 @@ To delete a customer, send a DELETE request to `/api/customer/{customerId}`.
   - `customerId` (integer) - The ID of the customer to delete.
 
 Include additional details and explanations as needed in your `README.md` to make the documentation clear and comprehensive.
+
+```
+
 ```
