@@ -93,6 +93,35 @@ const UserModel = {
       });
   },
 
+  getUserRoleAndStoreIdByAccessToken: (accesstoken, callback) => {
+    getConnection()
+      .then((connection) => {
+        // Query the database to get the user's role and store_id based on the provided accesstoken
+        const query = 'SELECT `role`, `store_id` FROM `users` WHERE `accesstoken` = ?';
+        connection.query(query, [accesstoken], (err, results) => {
+          connection.release(); // Release the connection back to the pool
+
+          if (err) {
+            callback(err, null, null);
+            return;
+          }
+
+          if (results.length === 0) {
+            // Access token not found, user doesn't exist
+            callback(null, null, null);
+          } else {
+            const userRole = results[0].role;
+            const storeId = results[0].store_id;
+            callback(null, userRole, storeId);
+          }
+        });
+      })
+      .catch((err) => {
+        callback(err, null, null);
+      });
+  },
+
+
 
   generateStoreID: () => {
     // Generate a random alphanumeric store_id

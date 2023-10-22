@@ -1,10 +1,12 @@
+// models/customerModel.js
+
 const { getConnection } = require('../dbConfig.js');
 
 const CustomerModel = {
   getAllCustomers: (callback) => {
     getConnection()
       .then((connection) => {
-        connection.query('SELECT * FROM `customers`', (err, results) => {
+        connection.query('SELECT `id`, `store_id`, `name`, `phone`, `whatsapp`, `createtime` FROM `customers` WHERE 1', (err, results) => {
           connection.release(); // Release the connection back to the pool
           if (err) {
             callback(err, null);
@@ -18,11 +20,11 @@ const CustomerModel = {
       });
   },
 
-  createCustomer: (name, address, phone, email, whatsapp, callback) => {
+  createCustomer: (name, phone, whatsapp, store_id, callback) => {
     getConnection()
       .then((connection) => {
-        const insertQuery = 'INSERT INTO `customers` (name, address, phone, email, whatsapp) VALUES (?, ?, ?, ?, ?)';
-        const values = [name, address, phone, email, whatsapp];
+        const insertQuery = 'INSERT INTO `customers` (name, phone, whatsapp, store_id) VALUES (?, ?, ?, ?)';
+        const values = [name, phone, whatsapp, store_id];
         
         connection.query(insertQuery, values, (err, results) => {
           connection.release(); // Release the connection back to the pool
@@ -38,11 +40,11 @@ const CustomerModel = {
       });
   },
 
-  updateCustomer: (customerId, name, address, phone, email, whatsapp, callback) => {
+  updateCustomer: (customerId, name, phone, whatsapp, callback) => {
     getConnection()
       .then((connection) => {
-        const updateQuery = 'UPDATE `customers` SET name = ?, address = ?, phone = ?, email = ?, whatsapp = ? WHERE id = ?';
-        const values = [name, address, phone, email, whatsapp, customerId];
+        const updateQuery = 'UPDATE `customers` SET name = ?, phone = ?, whatsapp = ? WHERE id = ?';
+        const values = [name, phone, whatsapp, customerId];
         
         connection.query(updateQuery, values, (err, results) => {
           connection.release(); // Release the connection back to the pool
