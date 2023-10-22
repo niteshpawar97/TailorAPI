@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailorApp API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-3xl mx-auto">
+        <header class="mb-4 text-center">
+            <h1 class="text-3xl font-semibold text-gray-800">TailorApp API Documentation</h1>
+        </header>
+
+        <main class="rounded-lg bg-white p-4 shadow-lg">
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-2">Authentication</h2>
+                <p class="mb-2">Before using any of the endpoints, you need to authenticate. You can do this by sending a POST request to <code>/api/login</code> with the following JSON data:</p>
+                <pre class="bg-gray-100 p-2 rounded-md"><code>{
+  "username": "nitesh",
+  "password": "1234"
+}</code></pre>
+                <p class="mb-2">Endpoint: <code>/api/login</code></p>
+                <p class="mb-2">Method: POST</p>
+                <!-- Include other details as needed -->
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-2">Add a Customer</h2>
+                <p class="mb-2">To add a new customer, send a POST request to <code>/api/customer/create</code> with the following JSON data:</p>
+                <pre class="bg-gray-100 p-2 rounded-md"><code>{
+  "name": "rajsh pawar",
+  "phone": "9988007766",
+  "whatsapp": "9988007766"
+}</code></pre>
+                <p class="mb-2">Headers: <code>Authorization: 'client-accesstoken'</code></p>
+                <p class="mb-2">Endpoint: <code>/api/customer/create</code></p>
+                <p class="mb-2">Method: POST</p>
+                <!-- Include other details as needed -->
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-2">Update a Customer</h2>
+                <p class="mb-2">To update a customer's information, send a PUT request to <code>/api/customer/{customerId}</code> with the following JSON data:</p>
+                <pre class="bg-gray-100 p-2 rounded-md"><code>{
+  "name": "rajsh pawar",
+  "phone": "9988007766",
+  "whatsapp": "9988007766"
+}</code></pre>
+                <p class="mb-2">Headers: <code>Authorization: 'client-accesstoken'</code></p>
+                <p class="mb-2">Endpoint: <code>/api/customer/{customerId}</code></p>
+                <p class="mb-2">Method: PUT</p>
+                <!-- Include other details as needed -->
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold mb-2">Show All Customers</h2>
+                <p class="mb-2">To retrieve a list of all customers, send a GET request to <code>/api/customer/all</code>.</p>
+                <p class="mb-2">Headers: <code>Authorization: 'client-accesstoken'</code></p>
+                <p class="mb-2">Endpoint: <code>/api/customer/all</code></p>
+                <p class="mb-2">Method: GET</p>
+                <!-- Include other details as needed -->
+            </section>
+
+            <section>
+                <h2 class="text-xl font-semibold mb-2">Delete a Customer</h2>
+                <p class="mb-2">To delete a customer, send a DELETE request to <code>/api/customer/{customerId}</code>.</p>
+                <p class="mb-2">Headers: <code>Authorization: 'client-accesstoken'</code></p>
+                <p class="mb-2">Endpoint: <code>/api/customer/{customerId}</code></p>
+                <p class="mb-2">Method: DELETE</p>
+                <!-- Include other details as needed -->
+            </section>
+        </main>
+    </div>
+</body>
+</html>
