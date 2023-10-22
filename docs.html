@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 p-8">
+    <header class="mb-4 text-center">
+      <h1 class="text-3xl font-semibold text-gray-800">TailorApp API Documentation</h1>
+    </header>
+
+    <main class="mx-auto max-w-3xl rounded-lg bg-white p-4 shadow-lg">
+      <!-- Section for Authentication -->
+      <section class="mb-8">
+        <h2 class="mb-2 text-xl font-semibold">Authentication</h2>
+        <p class="mb-2">Before using any of the endpoints, you need to authenticate. You can do this by sending a POST request to <code>/api/login</code> with the following JSON data:</p>
+        <pre class="rounded-md bg-gray-100 p-2"><code>{
+  "username": "nitesh",
+  "password": "1234"
+}</code></pre>
+        <p class="mb-2">Endpoint: <code>/api/login</code></p>
+        <p class="mb-2">Method: POST</p>
+        <!-- Include other details as needed -->
+      </section>
+
+      <!-- Section for Adding a Customer -->
+      <section class="mb-8">
+        <h2 class="mb-2 text-xl font-semibold">Add a Customer</h2>
+        <p class="mb-2">To add a new customer, send a POST request to <code>/api/customer/add</code> with the following JSON data:</p>
+        <pre class="rounded-md bg-gray-100 p-2"><code>{
+  "name": "rajesh pawar",
+  "phone": "1234567890",
+  "whatsapp": "1234567890",
+  "address": "CWA, IND",
+  "email": "rj@gmail.com"
+}<p class="text-red-500 font-bold">*required: name, phone, whatsapp</p>
+</code></pre>
+        <p class="mb-2">Endpoint: <code>/api/customer/add</code></p>
+        <p class="mb-2">Method: POST</p>
+        <!-- Include other details as needed -->
+      </section>
+
+      <!-- Section for Updating a Customer -->
+      <section>
+        <h2 class="mb-2 text-xl font-semibold">Update a Customer</h2>
+        <p class="mb-2">To update a customer's information, send a PUT request to <code>/api/customer/{customerId}</code> with the following JSON data:</p>
+        <pre class="rounded-md bg-gray-100 p-2"><code>{
+  "name": "rajesh pawar",
+  "phone": "1234567890",
+  "whatsapp": "1234567890",
+  "address": "CWA, IND",
+  "email": "rj@gmail.com"
+}</code></pre>
+        <p class="mb-2">Endpoint: <code>/api/customer/{customerId}</code></p>
+        <p class="mb-2">Method: PUT</p>
+        <!-- Include other details as needed -->
+      </section>
+
+      <!-- New Section to Show All Customers -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-2">Show All Customers</h2>
+            <p class="mb-2">To retrieve a list of all customers, send a GET request to <code>/api/customer/a</code>.</p>
+            <p class="mb-2">Endpoint: <code>/api/customer/a</code></p>
+            <p class="mb-2">Method: GET</p>
+            <p class="mb-2">Response: Customers list in JSON format.</p>
+            <pre class="bg-gray-100 p-2 rounded-md"><code>{
+  "error": false,
+  "message": "Customers List",
+  "customers": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "address": "123 Main St, Anytown, USA",
+      "phone": "555-123-4567",
+      "email": "john@example.com",
+      "whatsapp": "555-987-6543",
+      "createtime": "2023-10-21T13:27:51.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "address": "456 Elm St, Othertown, USA",
+      "phone": "555-555-5555",
+      "email": "jane@example.com",
+      "whatsapp": "555-111-2222",
+      "createtime": "2023-10-21T13:27:51.000Z"
+    }
+  ]
+}</code></pre>
+        </section>
+
+        <!-- New Section for Deleting a Customer -->
+        <section>
+            <h2 class="text-xl font-semibold mb-2">Delete a Customer</h2>
+            <p class="mb-2">To delete a customer, send a DELETE request to <code>/api/customer/{customerId}</code>.</p>
+            <p class="mb-2">Endpoint: <code>/api/customer/{customerId}</code></p>
+            <p class="mb-2">Method: DELETE</p>
+            <!-- Include other details as needed -->
+        </section>
+
+
+    </main>
+  </body>
+</html>

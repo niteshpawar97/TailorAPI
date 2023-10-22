@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const shopUserRoutes = require('./routes/shopUserRoutes');
+const UserRoutes = require('./routes/userRoutes');
 const customerRoutes = require('./routes/customerRoutes');
-const authRoutes = require('./routes/authRoutes');
 const { log } = require('console');
 
 const port = process.env.PORT || 5000;
+
+app.use(express.json());
 
 // CORS middleware
 app.use((req, res, next) => {
@@ -14,9 +15,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-app.use(express.json());
-app.use('/', authRoutes);
-app.use('/api/', shopUserRoutes);
+app.use('/api/', UserRoutes);
 app.use('/api/customer/', customerRoutes);
 
 app.listen(port, () => {
