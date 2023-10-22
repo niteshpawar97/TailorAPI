@@ -3,10 +3,10 @@ const mysql = require('mysql2');
 
 // Create a connection pool
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  database: 'tailor_app',
-  password: '',
+  host: '144.24.132.51',
+  user: 'tailorapp',
+  database: 'tailorapp',
+  password: 'tailorapp',
   waitForConnections: true,
   connectionLimit: 10, // Adjust the connection limit as needed
   queueLimit: 0
