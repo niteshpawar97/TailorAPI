@@ -78,6 +78,29 @@ const CustomerModel = {
         callback(err, null);
       });
   },
+
+  searchByMobileNumber: (mobileNumber, callback) => {
+    getConnection()
+      .then((connection) => {
+        const query = 'SELECT * FROM customers WHERE phone LIKE ?';
+        const searchPattern = '%' + mobileNumber + '%';
+
+        connection.query(query, [searchPattern], (err, results) => {
+          connection.release(); // Release the connection back to the pool
+
+          if (err) {
+            callback(err, null);
+            return;
+          }
+
+          callback(null, results); // Return all results that match the search pattern
+        });
+      })
+      .catch((err) => {
+        callback(err, null);
+      });
+  },
+
 };
 
 module.exports = CustomerModel;

@@ -103,6 +103,29 @@ const CustomerController = {
       res.json({ error: false, message: "Customer deleted", id: customerId });
     });
   },
+
+
+  searchCustomerByMobile: (req, res) => {
+    const mobileNumber = req.params.mobileNumber;
+
+    // Handle the search by mobile number
+    CustomerModel.searchByMobileNumber(mobileNumber, (err, customer) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: true, message: 'Database error' });
+        return;
+      }
+
+      if (!customer) {
+        res.status(404).json({ error: true, message: 'Customer not found' });
+        return;
+      }
+
+      res.json({ error: false, customer });
+    });
+  },
+
+  
 };
 
 module.exports = CustomerController;

@@ -14,4 +14,8 @@ router.put('/:id', CustomerController.updateCustomer);
 // Delete a customer by ID
 router.delete('/:id', CustomerController.deleteCustomer);
 
+// Add a route to search for a customer by mobile number
+router.get('/search/:mobileNumber', CustomerController.searchCustomerByMobile);
+
+
 module.exports = router;

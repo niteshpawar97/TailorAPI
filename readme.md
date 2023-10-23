@@ -117,6 +117,55 @@ To delete a customer, send a DELETE request to `/api/customer/{customerId}`.
 - **URL Parameter:**
   - `customerId` (integer) - The ID of the customer to delete.
 
+
+## Search Customers by Mobile Number
+
+Search for customers by their mobile number. This endpoint allows you to find customers based on a partial or complete mobile number.
+
+    URL: /api/customer/search/:mobileNumber
+
+    Method: GET
+
+    Parameters:
+        mobileNumber (string): The mobile number to search for.
+
+    Example:
+
+    Request: GET `/api/customer/search/12345`
+
+
+
+To retrieve a list of all customers, send a GET request to `/api/customer/all`.
+
+- **Headers:** `Authorization: 'client-accesstoken'`
+- **Endpoint:** `/api/customer/search/{mobileNumber}`
+- **Method:** GET
+- **Response:** Customers list in JSON format.
+
+```json
+{
+    "error": false,
+    "customer": [
+        {
+            "id": 1,
+            "store_id": "niket1234",
+            "name": "John Doe",
+            "phone": "555-123-4567",
+            "whatsapp": "555-987-6543",
+            "createtime": "2023-10-21T13:27:51.000Z"
+        },
+        {
+            "id": 2,
+            "store_id": "niket1234",
+            "name": "Jane Smith",
+            "phone": "555-555-5555",
+            "whatsapp": "555-111-2222",
+            "createtime": "2023-10-21T13:27:51.000Z"
+        }
+    ]
+}
+```
+
 Include additional details and explanations as needed in your `README.md` to make the documentation clear and comprehensive.
 
 ```
