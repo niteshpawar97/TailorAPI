@@ -3,12 +3,14 @@
 
 This documentation provides information on how to use the endpoints of the TailorApp API.
 
-```code
-sudo su root
-    cd ../
-   cd niketgroup-soft/htdocs/soft.niketgroup.in/api
-   pm2 start app.js --name tailor
-```
+````
+## How to run Node Sever and run Code autorun
+
+  sudo su root
+  cd ../
+  cd niketgroup-soft/htdocs/soft.niketgroup.in/api
+  pm2 start app.js --name tailor
+
 
 ## Authentication
 
