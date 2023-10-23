@@ -6,11 +6,13 @@ This documentation provides information on how to use the endpoints of the Tailo
 ````
 ## How to run Node Sever and run Code autorun
 
-  sudo su root
-  cd ../
-  cd niketgroup-soft/htdocs/soft.niketgroup.in/api
-  pm2 start app.js --name tailor
-
+ - **1:**  `sudo su root``
+ - **2:**  `cd ../``
+ - **3:**  `cd niketgroup-soft/htdocs/soft.niketgroup.in/api``
+ - **3:**  `npm install pm2``
+ - **4:**  `pm2 start app.js --name tailor``
+ - **5:**  `pm2 save``
+  
 
 ## Authentication
 
@@ -22,7 +24,6 @@ Before using any of the endpoints, you need to authenticate. You can do this by 
   "password": "1234"
 }
 ```
-````
 
 - **Endpoint:** `/api/login`
 - **Method:** POST
