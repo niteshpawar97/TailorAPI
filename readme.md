@@ -3,6 +3,13 @@
 
 This documentation provides information on how to use the endpoints of the TailorApp API.
 
+```code
+sudo su root
+    cd ../
+   cd niketgroup-soft/htdocs/soft.niketgroup.in/api
+   pm2 start app.js --name tailor
+```
+
 ## Authentication
 
 Before using any of the endpoints, you need to authenticate. You can do this by sending a POST request to `/api/login` with the following JSON data:
