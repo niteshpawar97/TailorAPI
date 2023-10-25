@@ -23,22 +23,52 @@ const CustomerModel = {
   createCustomer: (name, phone, whatsapp, store_id, callback) => {
     getConnection()
       .then((connection) => {
-        const insertQuery = 'INSERT INTO `customers` (name, phone, whatsapp, store_id) VALUES (?, ?, ?, ?)';
-        const values = [name, phone, whatsapp, store_id];
-        
-        connection.query(insertQuery, values, (err, results) => {
-          connection.release(); // Release the connection back to the pool
-          if (err) {
-            callback(err, null);
+        // Check if a customer with the same phone and store_id already exists
+        const checkQuery = 'SELECT id FROM `customers` WHERE `phone` = ? AND `store_id` = ?';
+        const checkValues = [phone, store_id];
+  
+        connection.query(checkQuery, checkValues, (checkErr, checkResults) => {
+          if (checkErr) {
+            connection.release(); // Release the connection back to the pool
+            callback(checkErr.sqlMessage, null);
             return;
           }
-          callback(null, results);
+  
+          if (checkResults.length > 0) {
+            // A customer with the same phone and store_id already exists
+            connection.release(); // Release the connection back to the pool
+            callback(null, {
+              error: false,
+              id: checkResults[0].id,
+              type: 'old',
+              message: 'Customer already exists',
+            });
+          } else {
+            // No customer with the same phone and store_id exists, proceed to insert
+            const insertQuery = 'INSERT INTO `customers` (name, phone, whatsapp, store_id) VALUES (?, ?, ?, ?)';
+            const values = [name, phone, whatsapp, store_id];
+  
+            connection.query(insertQuery, values, (err, results) => {
+              connection.release(); // Release the connection back to the pool
+              if (err) {
+                callback(err, null);
+                return;
+              }
+              callback(null, {
+                error: false,
+                id: results.insertId,
+                type: 'new',
+                message: 'Customer created',
+              });
+            });
+          }
         });
       })
       .catch((err) => {
         callback(err, null);
       });
   },
+  
 
   updateCustomer: (customerId, name, phone, whatsapp, callback) => {
     getConnection()
