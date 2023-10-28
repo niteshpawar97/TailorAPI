@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const UserRoutes = require('./routes/userRoutes');
-const customerRoutes = require('./routes/customerRoutes');
+const CustomerRoutes = require('./routes/customerRoutes');
+const ProductRoutes = require('./routes/productRoutes');
 
 const port = process.env.PORT || 3000;
 
@@ -15,7 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/api/', UserRoutes);
-app.use('/api/customer/', customerRoutes);
+app.use('/api/customer/', CustomerRoutes);
+app.use('/api/product/', ProductRoutes);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
