@@ -13,6 +13,19 @@ This documentation provides information on how to use the endpoints of the Tailo
  - **4:**           `pm2 start app.js --name tailor`
  - **5:**           `pm2 save`
   
+  # Actions
+
+pm2 stop all           # Stop all processes
+pm2 restart all        # Restart all processes
+
+pm2 reload all         # Will 0s downtime reload (for NETWORKED apps)
+
+pm2 stop 0             # Stop specific process id
+pm2 restart 0          # Restart specific process id
+
+pm2 delete 0           # Will remove process from pm2 list
+pm2 delete all         # Will remove all processes from pm2 list
+
 
 ## Authentication
 
