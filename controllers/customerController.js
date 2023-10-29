@@ -96,8 +96,10 @@ const CustomerController = {
   searchCustomerByMobile: [ dvMiddleware.validPhoneField, (req, res) => {
     const mobileNumber = req.params.mobileNumber;
 
+    const store_id = req.headers.store_id;
+    const access_token = req.headers.authorization;
     // Handle the search by mobile number
-    CustomerModel.searchByMobileNumber(mobileNumber, (err, customer) => {
+    CustomerModel.searchByMobileNumber(mobileNumber, store_id, (err, customer) => {
       if (err) {
         console.error(err);
         res.status(500).json({ error: true, message: "Database error" });

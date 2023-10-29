@@ -109,13 +109,13 @@ const CustomerModel = {
       });
   },
 
-  searchByMobileNumber: (mobileNumber, callback) => {
+  searchByMobileNumber: (mobileNumber, store_id, callback) => {
     getConnection()
       .then((connection) => {
-        const query = 'SELECT * FROM customers WHERE phone LIKE ?';
+        const query = 'SELECT * FROM customers WHERE phone LIKE ? and store_id LIKE ?';
         const searchPattern = '%' + mobileNumber + '%';
 
-        connection.query(query, [searchPattern], (err, results) => {
+        connection.query(query, [searchPattern, store_id], (err, results) => {
           connection.release(); // Release the connection back to the pool
 
           if (err) {
