@@ -87,12 +87,12 @@ const ProductModel = {
       });
   },
 
-  searchProductsByStoreAndType: (store_id, type, callback) => {
+  searchProductsByStoreAndType: (store_id, callback) => {
     getConnection()
       .then((connection) => {
-        const query = 'SELECT * FROM products WHERE store_id = ? AND type = ? AND status = 1';
+        const query = 'SELECT * FROM products WHERE store_id = ? AND status = 1';
         
-        connection.query(query, [store_id, type], (err, results) => {
+        connection.query(query, [store_id], (err, results) => {
           connection.release();
           if (err) {
             callback(err, null);

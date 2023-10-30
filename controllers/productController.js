@@ -3,13 +3,38 @@ const ProductModel = require("../models/productModel");
 
 const ProductController = {
   getAllProducts: (req, res) => {
+    const store_id = req.headers.store_id;
+    const access_token = req.headers.authorization;
+
     ProductModel.getAllProducts((err, results) => {
       if (err) {
         console.error(err);
         res.status(500).json({ error: true, message: "Database error" });
         return;
       }
-      res.json({ error: false, message: "Products List", products: results });
+      
+      // Group products by type
+      const groupedProducts = {};
+      results.forEach((product) => {
+        const productType = product.type;
+        if (!groupedProducts[productType]) {
+          groupedProducts[productType] = [];
+        }
+        groupedProducts[productType].push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          type: product.type,
+          store_id: product.store_id,
+          // Include other fields as needed
+        });
+      });
+
+      res.json({
+        error: false,
+        message: "Products List",
+        productsByType: groupedProducts,
+      });
     });
   },
 
@@ -76,11 +101,9 @@ const ProductController = {
     // Retrieve the access token from the request
     const store_id = req.headers.store_id;
     const access_token = req.headers.authorization;
-    const { type } = req.query;
     //console.log(store_id);
     ProductModel.searchProductsByStoreAndType(
       store_id,
-      type,
       (err, results) => {
         if (err) {
           console.error(err);
@@ -88,13 +111,45 @@ const ProductController = {
           return;
         }
 
-        // Filter out unwanted properties from each result object
-        const filteredResults = results.map((result) => {
-          const { status, created_at, updated_at, ...rest } = result;
-          return rest;
-        });
+        // // Filter out unwanted properties from each result object
+        // const filteredResults = results.map((result) => {
+        //   const { status, created_at, updated_at, ...rest } = result;
+        //   return rest;
+        // });
 
-        res.json({ error: false, message: type, products: filteredResults });
+        // res.json({ error: false, products: filteredResults });
+
+
+
+
+             // Group products by type
+      const groupedProducts = {};
+      results.forEach((product) => {
+        const productType = product.type;
+        if (!groupedProducts[productType]) {
+          groupedProducts[productType] = [];
+        }
+        groupedProducts[productType].push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          type: product.type,
+          store_id: product.store_id,
+          // Include other fields as needed
+        });
+      });
+
+      res.json({
+        error: false,
+        message: "Products List",
+        productsByType: groupedProducts,
+      });
+
+
+
+
+
+
       }
     );
   },
